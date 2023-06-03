@@ -4,7 +4,7 @@
     dest:  /etc/systemd/system/{{ component }}.service
 
 - name: Start {{ component }} Service
-  ansible.builitin.systemd:
+  ansible.builtin.systemd:
     name: "{{ component }}"
     state: restarted
     enabled: yes
