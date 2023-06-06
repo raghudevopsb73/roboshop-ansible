@@ -1,1 +1,3 @@
 component: cart
+load_schema: false
+

@@ -1,1 +1,2 @@
 component: catalogue
+load_schema: true
