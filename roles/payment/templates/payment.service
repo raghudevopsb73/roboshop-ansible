@@ -4,13 +4,13 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST=cart-dev.rdevopsb73.online
-Environment=CART_PORT=8080
-Environment=USER_HOST=user-dev.rdevopsb73.online
-Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq-dev.rdevopsb73.online
-Environment=AMQP_USER=roboshop
-Environment=AMQP_PASS=roboshop123
+Environment=CART_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.cart_host', region='us-east-1') }}
+Environment=CART_PORT={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.cart_port', region='us-east-1') }}
+Environment=USER_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.user_host', region='us-east-1') }}
+Environment=USER_PORT={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.user_port', region='us-east-1') }}
+Environment=AMQP_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.amqp_host', region='us-east-1') }}
+Environment=AMQP_USER={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.amqp_user', region='us-east-1') }}
+Environment=AMQP_PASS={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.payment.amqp_pass', region='us-east-1') }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
