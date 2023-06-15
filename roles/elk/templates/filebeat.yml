@@ -46,8 +46,8 @@ filebeat.inputs:
 
   # Optional additional fields. These fields can be freely picked
   # to add additional information to the crawled log files for filtering
-  #fields:
-  #  level: debug
+  fields:
+    component: {{ component }}
   #  review: 1
 
 # ============================== Filebeat modules ==============================
