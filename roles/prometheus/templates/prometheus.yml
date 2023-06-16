@@ -31,3 +31,6 @@ scrape_configs:
         filters:
           - name: "tag:Monitor"
             values: [ "true", "yes" ]
+    relabel_configs:
+     - source_labels: [__meta_ec2_tag_Name]
+        target_label: component
