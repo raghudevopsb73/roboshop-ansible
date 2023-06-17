@@ -3,4 +3,10 @@
     name: common
     tasks_from: nodejs
 
+- name: Load Prometheus Node exporter
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-exporter
+
+
 
