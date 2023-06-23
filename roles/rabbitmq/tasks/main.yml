@@ -17,8 +17,8 @@
 
 - name: Add Application User
   community.rabbitmq.rabbitmq_user:
-    user: roboshop
-    password: roboshop123
+    user: "{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.rabbitmq.amqp_user', region='us-east-1') }}"
+    password: "{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.rabbitmq.amqp_pass', region='us-east-1') }}"
     vhost: /
     configure_priv: .*
     read_priv: .*
