@@ -15,6 +15,11 @@
   args:
     chdir: /app
 
+- name: Download DocumentDB Pem file
+  ansible.builtin.get_url:
+    url: https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+    dest: /app/rds-combined-ca-bundle.pem
+
 - name: Load Schema
   ansible.builtin.import_tasks:
     file: mongo_schema_setup.yml
