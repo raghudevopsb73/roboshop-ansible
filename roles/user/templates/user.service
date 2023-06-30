@@ -4,7 +4,7 @@ Description = User Service
 User=roboshop
 Environment=MONGO={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.mongo', region='us-east-1') }}
 Environment=REDIS_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.redis_host', region='us-east-1') }}
-Environment=MONGO_URL={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.mongo_url', region='us-east-1') }}
+Environment=MONGO_URL="{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.mongo_url', region='us-east-1') }}"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=user
 
