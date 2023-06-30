@@ -10,7 +10,7 @@
 
 - name: Load Schema
   #ansible.builtin.shell: mongo --host mongodb-dev.rdevopsb73.online </app/schema/{{ component }}.js
-  ansible.builtin.shell: mongo --ssl --host {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.catalogue.docdb_endpoint', region='us-east-1') }}:27017 --sslCAFile /app/rds-combined-ca-bundle.pem --username {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.username', region='us-east-1') }} --password {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.password', region='us-east-1') }} </app/schema/{{ component }}.js
+  ansible.builtin.shell: mongo --ssl --host {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.{{component}}.docdb_endpoint', region='us-east-1') }}:27017 --sslCAFile /app/rds-combined-ca-bundle.pem --username {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.username', region='us-east-1') }} --password {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.password', region='us-east-1') }} </app/schema/{{ component }}.js
 
 
 
