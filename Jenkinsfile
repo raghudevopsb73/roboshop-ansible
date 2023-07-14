@@ -26,7 +26,7 @@ pipeline {
 
     stage('Deploy Application') {
       steps {
-        sh 'ansible-playbook -i inv main.yml  -e role_name=${COMPONENT} -e env=${ENV} -e ansible_user=centos -e ansible_password=DevOps321'
+        sh 'ansible-playbook -i inv main.yml  -e role_name=${COMPONENT} -e env=${ENV} -e app_version=${APP_VERSION} -e ansible_user=centos -e ansible_password=DevOps321'
       }
     }
 
