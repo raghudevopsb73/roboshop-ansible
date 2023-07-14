@@ -1,2 +1,3 @@
 component: catalogue
 load_schema: true
+app_version: 1.0.0
