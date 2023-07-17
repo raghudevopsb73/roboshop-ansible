@@ -3,8 +3,14 @@
     name: mysql
     state: installed
 
+- name: Check if Schema exists or not
+  ansible.builtin.shell: echo show databases | mysql -h {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.endpoint', region='us-east-1') }} -u{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.username', region='us-east-1') }} -p{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.password', region='us-east-1') }} | grep cities
+  ignore_errors: yes
+  register: stat
+
 - name: Load Schema
   ansible.builtin.shell: mysql -h {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.endpoint', region='us-east-1') }} -u{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.username', region='us-east-1') }} -p{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.mysql.password', region='us-east-1') }} </app/schema/{{ component }}.sql
+  when: stat.rc != 0
 
 
 
