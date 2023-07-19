@@ -5,7 +5,7 @@ Description=Shipping Service
 User=roboshop
 Environment=CART_ENDPOINT={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.shipping.cart_endpoint', region='us-east-1') }}
 Environment=DB_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.shipping.db_host', region='us-east-1') }}
-ExecStart=/bin/java  -XX:MaxRAMPercentage=90.0 -XX:InitialRAMPercentage=80  -jar /app/shipping.jar
+ExecStart=/bin/java  -XX:MaxRAMPercentage=80.0 -XX:InitialRAMPercentage=70  -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
 [Install]
