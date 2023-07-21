@@ -18,6 +18,12 @@ pipeline {
 
   stages {
 
+    stage('Update Parameters') {
+      steps {
+        sh 'aws ssm put-parameter --name roboshop.${ENV}.${COMPONENT}.app_version --type "String" --value "${APP_VERSION}" --overwrite'
+      }
+    }
+
     stage('Get Servers') {
       steps {
         sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text |xargs -n1>inv'
