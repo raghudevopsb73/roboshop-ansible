@@ -20,7 +20,7 @@
 
 - name: Download and extract app content from nexus
   ansible.builtin.unarchive:
-    src: http://{{ lookup('amazon.aws.aws_ssm', 'roboshop.nexus.username', region='us-east-1') }}:{{ lookup('amazon.aws.aws_ssm', 'roboshop.nexus.password', region='us-east-1') }}@172.31.95.9:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
+    src: http://{{ lookup('amazon.aws.aws_ssm', 'roboshop.nexus.username', region='us-east-1') }}:{{ lookup('amazon.aws.aws_ssm', 'roboshop.nexus.password', region='us-east-1') }}@172.31.95.9:8081/repository/{{component}}/{{component}}-{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.{{component}}.app_version', region='us-east-1') }}.zip
     dest: /app
     remote_src: yes
 
